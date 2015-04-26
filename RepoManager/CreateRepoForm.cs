@@ -67,6 +67,7 @@ namespace RepoManager
             }
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = dataTable;
+            bindingSource.Sort = "include DESC, name ASC";
             dgvMods.DataSource = bindingSource;
 
             dgvMods.DefaultCellStyle.SelectionBackColor = dgvMods.DefaultCellStyle.BackColor;
@@ -183,24 +184,24 @@ namespace RepoManager
             tabMods.Text = "Mods (" + numIncludedMods + ")";
         }
 
+        private void dgvMods_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            for (int rowIndex = e.RowIndex; rowIndex < e.RowIndex + e.RowCount; rowIndex++)
+                this.updateCheckboxState(rowIndex);
+        }
+
         private void dgvMods_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvMods.Columns[e.ColumnIndex].Name == "modIncluded")
                 this.updateCheckboxState(e.RowIndex);
+
+            txtModsSearch.Select();
         }
 
         private void dgvMods_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (dgvMods.IsCurrentCellDirty)
                 dgvMods.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        }
-
-        private void dgvMods_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int rowIndex = e.RowIndex; rowIndex < e.RowIndex + e.RowCount; rowIndex++)
-            {
-                this.updateCheckboxState(rowIndex);
-            }
         }
 
         private void tabGeneral_Enter(object sender, EventArgs e)
