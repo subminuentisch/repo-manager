@@ -170,12 +170,17 @@ namespace RepoManager
 
         private void updateCheckboxState(int rowIndex)
         {
-            var row = dgvMods.Rows[rowIndex];
-            var modOptionalCell = row.Cells["modOptional"];
-            modOptionalCell.ReadOnly = !(bool)row.Cells["modIncluded"].Value;
+            var currentRow = dgvMods.Rows[rowIndex];
+            var modOptionalCell = currentRow.Cells["modOptional"];
+            modOptionalCell.ReadOnly = !(bool)currentRow.Cells["modIncluded"].Value;
             modOptionalCell.Value = (modOptionalCell.ReadOnly ? false : modOptionalCell.Value);
             modOptionalCell.Style.ForeColor = (modOptionalCell.ReadOnly ? Color.FromName("ControlLight") : Color.Black);
             modOptionalCell.Style.SelectionForeColor = modOptionalCell.Style.ForeColor;
+
+            int numIncludedMods = 0;
+            foreach (DataGridViewRow row in dgvMods.Rows)
+                numIncludedMods += ((bool)row.Cells["modIncluded"].Value ? 1 : 0);
+            tabMods.Text = "Mods (" + numIncludedMods + ")";
         }
 
         private void dgvMods_CellValueChanged(object sender, DataGridViewCellEventArgs e)
