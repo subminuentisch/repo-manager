@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabGeneral = new System.Windows.Forms.TabPage();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabMods = new System.Windows.Forms.TabPage();
             this.txtModsSearch = new System.Windows.Forms.TextBox();
             this.lblModsSearch = new System.Windows.Forms.Label();
             this.dgvMods = new System.Windows.Forms.DataGridView();
             this.modName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modIncluded = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.modOptional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabArma = new System.Windows.Forms.TabPage();
             this.txtArmaPassword = new System.Windows.Forms.TextBox();
             this.lblArmaPassword = new System.Windows.Forms.Label();
             this.numArmaPort = new System.Windows.Forms.NumericUpDown();
             this.lblArmaAddress = new System.Windows.Forms.Label();
             this.txtArmaAddress = new System.Windows.Forms.TextBox();
             this.lblArmaPort = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabTeamspeak = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTeamspeakChannelPassword = new System.Windows.Forms.TextBox();
             this.lblTeamspeakChannelPassword = new System.Windows.Forms.Label();
@@ -67,13 +67,13 @@
             this.errName = new System.Windows.Forms.ErrorProvider(this.components);
             this.prgCreate = new System.Windows.Forms.ProgressBar();
             this.bgwCreate = new System.ComponentModel.BackgroundWorker();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabGeneral.SuspendLayout();
+            this.tabMods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabArma.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numArmaPort)).BeginInit();
-            this.tabPage4.SuspendLayout();
+            this.tabTeamspeak.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTeamspeakPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errName)).BeginInit();
@@ -89,32 +89,33 @@
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(528, 298);
-            this.tabControl1.TabIndex = 1;
+            this.tabControl.Controls.Add(this.tabGeneral);
+            this.tabControl.Controls.Add(this.tabMods);
+            this.tabControl.Controls.Add(this.tabArma);
+            this.tabControl.Controls.Add(this.tabTeamspeak);
+            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(528, 298);
+            this.tabControl.TabIndex = 1;
             // 
-            // tabPage1
+            // tabGeneral
             // 
-            this.tabPage1.Controls.Add(this.txtName);
-            this.tabPage1.Controls.Add(this.lblName);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(520, 272);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "General";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabGeneral.Controls.Add(this.txtName);
+            this.tabGeneral.Controls.Add(this.lblName);
+            this.tabGeneral.Location = new System.Drawing.Point(4, 22);
+            this.tabGeneral.Name = "tabGeneral";
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGeneral.Size = new System.Drawing.Size(520, 272);
+            this.tabGeneral.TabIndex = 0;
+            this.tabGeneral.Text = "General";
+            this.tabGeneral.UseVisualStyleBackColor = true;
+            this.tabGeneral.Enter += new System.EventHandler(this.tabGeneral_Enter);
             // 
             // txtName
             // 
@@ -136,18 +137,19 @@
             this.lblName.TabIndex = 2;
             this.lblName.Text = "Name:";
             // 
-            // tabPage2
+            // tabMods
             // 
-            this.tabPage2.Controls.Add(this.txtModsSearch);
-            this.tabPage2.Controls.Add(this.lblModsSearch);
-            this.tabPage2.Controls.Add(this.dgvMods);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(520, 272);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Mods";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabMods.Controls.Add(this.txtModsSearch);
+            this.tabMods.Controls.Add(this.lblModsSearch);
+            this.tabMods.Controls.Add(this.dgvMods);
+            this.tabMods.Location = new System.Drawing.Point(4, 22);
+            this.tabMods.Name = "tabMods";
+            this.tabMods.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMods.Size = new System.Drawing.Size(520, 272);
+            this.tabMods.TabIndex = 1;
+            this.tabMods.Text = "Mods";
+            this.tabMods.UseVisualStyleBackColor = true;
+            this.tabMods.Enter += new System.EventHandler(this.tabMods_Enter);
             // 
             // txtModsSearch
             // 
@@ -156,7 +158,7 @@
             this.txtModsSearch.Location = new System.Drawing.Point(53, 7);
             this.txtModsSearch.Name = "txtModsSearch";
             this.txtModsSearch.Size = new System.Drawing.Size(461, 20);
-            this.txtModsSearch.TabIndex = 8;
+            this.txtModsSearch.TabIndex = 0;
             this.txtModsSearch.TextChanged += new System.EventHandler(this.txtModsSearch_TextChanged);
             // 
             // lblModsSearch
@@ -217,32 +219,33 @@
             // modOptional
             // 
             this.modOptional.DataPropertyName = "optional";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle4.NullValue = false;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            this.modOptional.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.NullValue = false;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            this.modOptional.DefaultCellStyle = dataGridViewCellStyle5;
             this.modOptional.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.modOptional.HeaderText = "Optional";
             this.modOptional.Name = "modOptional";
             this.modOptional.ReadOnly = true;
             this.modOptional.Width = 58;
             // 
-            // tabPage3
+            // tabArma
             // 
-            this.tabPage3.Controls.Add(this.txtArmaPassword);
-            this.tabPage3.Controls.Add(this.lblArmaPassword);
-            this.tabPage3.Controls.Add(this.numArmaPort);
-            this.tabPage3.Controls.Add(this.lblArmaAddress);
-            this.tabPage3.Controls.Add(this.txtArmaAddress);
-            this.tabPage3.Controls.Add(this.lblArmaPort);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(520, 272);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "ArmA Server";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabArma.Controls.Add(this.txtArmaPassword);
+            this.tabArma.Controls.Add(this.lblArmaPassword);
+            this.tabArma.Controls.Add(this.numArmaPort);
+            this.tabArma.Controls.Add(this.lblArmaAddress);
+            this.tabArma.Controls.Add(this.txtArmaAddress);
+            this.tabArma.Controls.Add(this.lblArmaPort);
+            this.tabArma.Location = new System.Drawing.Point(4, 22);
+            this.tabArma.Name = "tabArma";
+            this.tabArma.Padding = new System.Windows.Forms.Padding(3);
+            this.tabArma.Size = new System.Drawing.Size(520, 272);
+            this.tabArma.TabIndex = 2;
+            this.tabArma.Text = "ArmA Server";
+            this.tabArma.UseVisualStyleBackColor = true;
+            this.tabArma.Enter += new System.EventHandler(this.tabArma_Enter);
             // 
             // txtArmaPassword
             // 
@@ -309,22 +312,23 @@
             this.lblArmaPort.TabIndex = 16;
             this.lblArmaPort.Text = "Port:";
             // 
-            // tabPage4
+            // tabTeamspeak
             // 
-            this.tabPage4.Controls.Add(this.groupBox1);
-            this.tabPage4.Controls.Add(this.txtTeamspeakPassword);
-            this.tabPage4.Controls.Add(this.lblTeamspeakPassword);
-            this.tabPage4.Controls.Add(this.numTeamspeakPort);
-            this.tabPage4.Controls.Add(this.lblTeamspeakAddress);
-            this.tabPage4.Controls.Add(this.txtTeamspeakAddress);
-            this.tabPage4.Controls.Add(this.lblTeamspeakPort);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(520, 272);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "TeamSpeak Server";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabTeamspeak.Controls.Add(this.groupBox1);
+            this.tabTeamspeak.Controls.Add(this.txtTeamspeakPassword);
+            this.tabTeamspeak.Controls.Add(this.lblTeamspeakPassword);
+            this.tabTeamspeak.Controls.Add(this.numTeamspeakPort);
+            this.tabTeamspeak.Controls.Add(this.lblTeamspeakAddress);
+            this.tabTeamspeak.Controls.Add(this.txtTeamspeakAddress);
+            this.tabTeamspeak.Controls.Add(this.lblTeamspeakPort);
+            this.tabTeamspeak.Location = new System.Drawing.Point(4, 22);
+            this.tabTeamspeak.Name = "tabTeamspeak";
+            this.tabTeamspeak.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTeamspeak.Size = new System.Drawing.Size(520, 272);
+            this.tabTeamspeak.TabIndex = 3;
+            this.tabTeamspeak.Text = "TeamSpeak Server";
+            this.tabTeamspeak.UseVisualStyleBackColor = true;
+            this.tabTeamspeak.Enter += new System.EventHandler(this.tabTeamspeak_Enter);
             // 
             // groupBox1
             // 
@@ -497,22 +501,22 @@
             this.Controls.Add(this.prgCreate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Name = "CreateRepoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create Repository";
             this.Load += new System.EventHandler(this.CreateRepoForm_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.tabGeneral.ResumeLayout(false);
+            this.tabGeneral.PerformLayout();
+            this.tabMods.ResumeLayout(false);
+            this.tabMods.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMods)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabArma.ResumeLayout(false);
+            this.tabArma.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numArmaPort)).EndInit();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tabTeamspeak.ResumeLayout(false);
+            this.tabTeamspeak.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTeamspeakPort)).EndInit();
@@ -525,14 +529,14 @@
 
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabMods;
         private System.Windows.Forms.DataGridView dgvMods;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabArma;
+        private System.Windows.Forms.TabPage tabTeamspeak;
         private System.Windows.Forms.NumericUpDown numArmaPort;
         private System.Windows.Forms.Label lblArmaAddress;
         private System.Windows.Forms.TextBox txtArmaAddress;

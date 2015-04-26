@@ -33,7 +33,6 @@ namespace RepoManager
 
         private void CreateRepoForm_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = txtName;
             txtName.Text = repo.Name;
             txtArmaAddress.Text = repo.ArmaServer.Address;
             numArmaPort.Value = repo.ArmaServer.Port;
@@ -197,6 +196,26 @@ namespace RepoManager
             {
                 this.updateCheckboxState(rowIndex);
             }
+        }
+
+        private void tabGeneral_Enter(object sender, EventArgs e)
+        {
+            txtName.Select();
+        }
+
+        private void tabMods_Enter(object sender, EventArgs e)
+        {
+            txtModsSearch.Select();
+        }
+
+        private void tabTeamspeak_Enter(object sender, EventArgs e)
+        {
+            txtTeamspeakAddress.Select();
+        }
+
+        private void tabArma_Enter(object sender, EventArgs e)
+        {
+            txtArmaAddress.Select();
         }
     }
 }
