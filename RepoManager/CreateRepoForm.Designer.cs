@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -125,7 +125,7 @@
             this.txtName.Location = new System.Drawing.Point(6, 23);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(508, 20);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 6;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // lblName
@@ -158,7 +158,7 @@
             this.txtModsSearch.Location = new System.Drawing.Point(53, 7);
             this.txtModsSearch.Name = "txtModsSearch";
             this.txtModsSearch.Size = new System.Drawing.Size(461, 20);
-            this.txtModsSearch.TabIndex = 0;
+            this.txtModsSearch.TabIndex = 8;
             this.txtModsSearch.TextChanged += new System.EventHandler(this.txtModsSearch_TextChanged);
             // 
             // lblModsSearch
@@ -191,7 +191,7 @@
             this.dgvMods.Name = "dgvMods";
             this.dgvMods.RowHeadersVisible = false;
             this.dgvMods.Size = new System.Drawing.Size(508, 233);
-            this.dgvMods.TabIndex = 6;
+            this.dgvMods.TabIndex = 10;
             this.dgvMods.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellValueChanged);
             this.dgvMods.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvMods_CurrentCellDirtyStateChanged);
             this.dgvMods.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvMods_RowsAdded);
@@ -219,11 +219,11 @@
             // modOptional
             // 
             this.modOptional.DataPropertyName = "optional";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.NullValue = false;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            this.modOptional.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.NullValue = false;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
+            this.modOptional.DefaultCellStyle = dataGridViewCellStyle6;
             this.modOptional.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.modOptional.HeaderText = "Optional";
             this.modOptional.Name = "modOptional";
@@ -254,7 +254,7 @@
             this.txtArmaPassword.Location = new System.Drawing.Point(6, 68);
             this.txtArmaPassword.Name = "txtArmaPassword";
             this.txtArmaPassword.Size = new System.Drawing.Size(508, 20);
-            this.txtArmaPassword.TabIndex = 27;
+            this.txtArmaPassword.TabIndex = 16;
             this.txtArmaPassword.UseSystemPasswordChar = true;
             // 
             // lblArmaPassword
@@ -277,7 +277,7 @@
             0});
             this.numArmaPort.Name = "numArmaPort";
             this.numArmaPort.Size = new System.Drawing.Size(60, 20);
-            this.numArmaPort.TabIndex = 17;
+            this.numArmaPort.TabIndex = 14;
             this.numArmaPort.Value = new decimal(new int[] {
             2302,
             0,
@@ -300,7 +300,7 @@
             this.txtArmaAddress.Location = new System.Drawing.Point(6, 23);
             this.txtArmaAddress.Name = "txtArmaAddress";
             this.txtArmaAddress.Size = new System.Drawing.Size(442, 20);
-            this.txtArmaAddress.TabIndex = 15;
+            this.txtArmaAddress.TabIndex = 12;
             // 
             // lblArmaPort
             // 
@@ -352,7 +352,7 @@
             this.txtTeamspeakChannelPassword.Location = new System.Drawing.Point(9, 83);
             this.txtTeamspeakChannelPassword.Name = "txtTeamspeakChannelPassword";
             this.txtTeamspeakChannelPassword.Size = new System.Drawing.Size(493, 20);
-            this.txtTeamspeakChannelPassword.TabIndex = 33;
+            this.txtTeamspeakChannelPassword.TabIndex = 26;
             this.txtTeamspeakChannelPassword.UseSystemPasswordChar = true;
             // 
             // lblTeamspeakChannelPassword
@@ -371,7 +371,7 @@
             this.txtTeamspeakChannelId.Location = new System.Drawing.Point(9, 38);
             this.txtTeamspeakChannelId.Name = "txtTeamspeakChannelId";
             this.txtTeamspeakChannelId.Size = new System.Drawing.Size(493, 20);
-            this.txtTeamspeakChannelId.TabIndex = 31;
+            this.txtTeamspeakChannelId.TabIndex = 24;
             // 
             // lblTeamspeakChannelId
             // 
@@ -389,7 +389,7 @@
             this.txtTeamspeakPassword.Location = new System.Drawing.Point(6, 68);
             this.txtTeamspeakPassword.Name = "txtTeamspeakPassword";
             this.txtTeamspeakPassword.Size = new System.Drawing.Size(508, 20);
-            this.txtTeamspeakPassword.TabIndex = 25;
+            this.txtTeamspeakPassword.TabIndex = 22;
             this.txtTeamspeakPassword.UseSystemPasswordChar = true;
             // 
             // lblTeamspeakPassword
@@ -412,7 +412,7 @@
             0});
             this.numTeamspeakPort.Name = "numTeamspeakPort";
             this.numTeamspeakPort.Size = new System.Drawing.Size(60, 20);
-            this.numTeamspeakPort.TabIndex = 23;
+            this.numTeamspeakPort.TabIndex = 20;
             this.numTeamspeakPort.Value = new decimal(new int[] {
             9987,
             0,
@@ -435,7 +435,7 @@
             this.txtTeamspeakAddress.Location = new System.Drawing.Point(6, 23);
             this.txtTeamspeakAddress.Name = "txtTeamspeakAddress";
             this.txtTeamspeakAddress.Size = new System.Drawing.Size(442, 20);
-            this.txtTeamspeakAddress.TabIndex = 21;
+            this.txtTeamspeakAddress.TabIndex = 18;
             // 
             // lblTeamspeakPort
             // 
@@ -454,7 +454,7 @@
             this.btnCreate.Location = new System.Drawing.Point(465, 316);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
-            this.btnCreate.TabIndex = 19;
+            this.btnCreate.TabIndex = 3;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -465,7 +465,7 @@
             this.btnCancel.Location = new System.Drawing.Point(384, 316);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 20;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
