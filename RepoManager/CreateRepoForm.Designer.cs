@@ -99,7 +99,7 @@
             this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(528, 298);
+            this.tabControl.Size = new System.Drawing.Size(499, 314);
             this.tabControl.TabIndex = 1;
             // 
             // tabGeneral
@@ -109,7 +109,7 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(520, 272);
+            this.tabGeneral.Size = new System.Drawing.Size(491, 288);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             this.errName.SetIconPadding(this.txtName, -20);
             this.txtName.Location = new System.Drawing.Point(6, 23);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(508, 20);
+            this.txtName.Size = new System.Drawing.Size(479, 20);
             this.txtName.TabIndex = 6;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
@@ -143,7 +143,7 @@
             this.tabMods.Location = new System.Drawing.Point(4, 22);
             this.tabMods.Name = "tabMods";
             this.tabMods.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMods.Size = new System.Drawing.Size(520, 272);
+            this.tabMods.Size = new System.Drawing.Size(491, 288);
             this.tabMods.TabIndex = 1;
             this.tabMods.Text = "Mods";
             this.tabMods.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModsSearch.Location = new System.Drawing.Point(53, 7);
             this.txtModsSearch.Name = "txtModsSearch";
-            this.txtModsSearch.Size = new System.Drawing.Size(461, 20);
+            this.txtModsSearch.Size = new System.Drawing.Size(432, 20);
             this.txtModsSearch.TabIndex = 8;
             this.txtModsSearch.TextChanged += new System.EventHandler(this.txtModsSearch_TextChanged);
             // 
@@ -188,7 +188,7 @@
             this.dgvMods.Location = new System.Drawing.Point(6, 33);
             this.dgvMods.Name = "dgvMods";
             this.dgvMods.RowHeadersVisible = false;
-            this.dgvMods.Size = new System.Drawing.Size(508, 233);
+            this.dgvMods.Size = new System.Drawing.Size(479, 249);
             this.dgvMods.TabIndex = 10;
             this.dgvMods.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellValueChanged);
             this.dgvMods.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvMods_CurrentCellDirtyStateChanged);
@@ -414,7 +414,7 @@
             // 
             this.btnCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreate.Enabled = false;
-            this.btnCreate.Location = new System.Drawing.Point(465, 316);
+            this.btnCreate.Location = new System.Drawing.Point(436, 332);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
             this.btnCreate.TabIndex = 3;
@@ -425,7 +425,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(384, 316);
+            this.btnCancel.Location = new System.Drawing.Point(355, 332);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -442,9 +442,9 @@
             // 
             this.prgCreate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.prgCreate.Location = new System.Drawing.Point(12, 316);
+            this.prgCreate.Location = new System.Drawing.Point(12, 332);
             this.prgCreate.Name = "prgCreate";
-            this.prgCreate.Size = new System.Drawing.Size(366, 23);
+            this.prgCreate.Size = new System.Drawing.Size(337, 23);
             this.prgCreate.TabIndex = 21;
             this.prgCreate.Visible = false;
             // 
@@ -461,6 +461,7 @@
             this.modName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.modName.DataPropertyName = "name";
             this.modName.HeaderText = "Name";
+            this.modName.MinimumWidth = 50;
             this.modName.Name = "modName";
             this.modName.ReadOnly = true;
             this.modName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -470,13 +471,14 @@
             this.modStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.modStatus.DataPropertyName = "status";
             this.modStatus.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.modStatus.FillWeight = 50F;
+            this.modStatus.FillWeight = 40F;
             this.modStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.modStatus.HeaderText = "Status";
             this.modStatus.Items.AddRange(new object[] {
             "",
             "Optional",
             "Required"});
+            this.modStatus.MinimumWidth = 72;
             this.modStatus.Name = "modStatus";
             this.modStatus.Sorted = true;
             this.modStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -485,7 +487,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 351);
+            this.ClientSize = new System.Drawing.Size(523, 367);
             this.Controls.Add(this.prgCreate);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnCreate);
