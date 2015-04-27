@@ -14,6 +14,7 @@ namespace RepoManager
     public partial class CreateRepoForm : Form
     {
         Repo repo;
+        DataTable modsTable = new DataTable();
 
         public CreateRepoForm()
         {
@@ -43,10 +44,8 @@ namespace RepoManager
             txtTeamspeakChannelId.Text = repo.TeamspeakServer.ChannelId;
             txtTeamspeakChannelPassword.Text = repo.TeamspeakServer.ChannelPassword;
             
-            DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("name", typeof(string));
-            dataTable.Columns.Add("include", typeof(bool));
-            dataTable.Columns.Add("optional", typeof(bool));
+            modsTable.Columns.Add("name", typeof(string));
+            modsTable.Columns.Add("status", typeof(string));
             foreach (string dir in Directory.GetDirectories(Directory.GetCurrentDirectory(), "@*"))
             {
                 var modName = new DirectoryInfo(dir).Name;
@@ -57,21 +56,23 @@ namespace RepoManager
                     if (mod.Name == modName)
                     {
                         modIncluded = true;
-                        dataTable.Rows.Add(mod.Name, true, mod.Optional);
+                        modsTable.Rows.Add(mod.Name, mod.Optional ? "Optional" : "Required");
                         break;
                     }
                 }
 
                 if (!modIncluded)
-                    dataTable.Rows.Add(modName, false, false);
+                    modsTable.Rows.Add(modName, "");
             }
             BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = dataTable;
-            bindingSource.Sort = "include DESC, name ASC";
+            bindingSource.DataSource = modsTable;
+            bindingSource.Sort = "status DESC, name ASC";
             dgvMods.DataSource = bindingSource;
 
             dgvMods.DefaultCellStyle.SelectionBackColor = dgvMods.DefaultCellStyle.BackColor;
             dgvMods.DefaultCellStyle.SelectionForeColor = dgvMods.DefaultCellStyle.ForeColor;
+
+            updateModCount();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -92,8 +93,7 @@ namespace RepoManager
 
         private void txtModsSearch_TextChanged(object sender, EventArgs e)
         {
-            var bindingSource = (BindingSource)dgvMods.DataSource;
-            bindingSource.Filter = string.Format("name LIKE '%{0}%'", txtModsSearch.Text.Trim());
+            (dgvMods.DataSource as BindingSource).Filter = string.Format("name LIKE '%{0}%'", txtModsSearch.Text.Trim());
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -117,15 +117,14 @@ namespace RepoManager
             repo.TeamspeakServer.ChannelId = txtTeamspeakChannelId.Text;
             repo.TeamspeakServer.ChannelPassword = txtTeamspeakChannelPassword.Text;
 
-            DataRowCollection modRows = ((DataTable)((BindingSource)dgvMods.DataSource).DataSource).Rows;
-            foreach (DataRow modRow in modRows)
+            foreach (DataRow modRow in modsTable.Rows)
             {
-                bool modIncluded = (bool)modRow.ItemArray[1];
-                if (!modIncluded) continue;
+                string modStatus = modRow.ItemArray[1].ToString();
+                if (modStatus == "") continue;
 
                 Mod mod = new Mod();
                 mod.Name = (string)modRow.ItemArray[0];
-                mod.Optional = (bool)modRow.ItemArray[2];
+                mod.Optional = (modStatus == "Optional");
 
                 string[] filePaths = Directory.GetFiles(mod.Name, "*.*", SearchOption.AllDirectories);
                 foreach (string filePath in filePaths)
@@ -145,9 +144,10 @@ namespace RepoManager
                     }
                     mod.Files.Add(modFile);
 
-                    float modProgress = 100.0f * repo.Mods.Count / modRows.Count;
+                    // TODO: Implement properly, this is terrible. repo.Mods.Count includes mods that aren't even included.
+                    float modProgress = 100.0f * repo.Mods.Count / modsTable.Rows.Count;
                     float fileProgress = 100.0f * mod.Files.Count / filePaths.Length;
-                    float progress = modProgress + 1.0f / modRows.Count * fileProgress;
+                    float progress = modProgress + 1.0f / modsTable.Rows.Count * fileProgress;
                     bgwCreate.ReportProgress((int)progress);
                 }
 
@@ -168,31 +168,17 @@ namespace RepoManager
             this.Close();
         }
 
-        private void updateCheckboxState(int rowIndex)
+        private void updateModCount()
         {
-            var currentRow = dgvMods.Rows[rowIndex];
-            var modOptionalCell = currentRow.Cells["modOptional"];
-            modOptionalCell.ReadOnly = !(bool)currentRow.Cells["modIncluded"].Value;
-            modOptionalCell.Value = (modOptionalCell.ReadOnly ? false : modOptionalCell.Value);
-            modOptionalCell.Style.ForeColor = (modOptionalCell.ReadOnly ? Color.FromName("ControlLight") : Color.Black);
-            modOptionalCell.Style.SelectionForeColor = modOptionalCell.Style.ForeColor;
-
-            int numIncludedMods = 0;
-            foreach (DataGridViewRow row in dgvMods.Rows)
-                numIncludedMods += ((bool)row.Cells["modIncluded"].Value ? 1 : 0);
-            tabMods.Text = "Mods (" + numIncludedMods + ")";
-        }
-
-        private void dgvMods_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            for (int rowIndex = e.RowIndex; rowIndex < e.RowIndex + e.RowCount; rowIndex++)
-                this.updateCheckboxState(rowIndex);
+            int numModsRepo = 0;
+            foreach (DataRow row in modsTable.Rows)
+                numModsRepo += (row.ItemArray[1].ToString() != "" ? 1 : 0);
+            tabMods.Text = "Mods (" + numModsRepo + ")";
         }
 
         private void dgvMods_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvMods.Columns[e.ColumnIndex].Name == "modIncluded")
-                this.updateCheckboxState(e.RowIndex);
+            updateModCount();
 
             txtModsSearch.SelectAll();
             txtModsSearch.Focus();

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -40,9 +39,6 @@
             this.txtModsSearch = new System.Windows.Forms.TextBox();
             this.lblModsSearch = new System.Windows.Forms.Label();
             this.dgvMods = new System.Windows.Forms.DataGridView();
-            this.modName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modIncluded = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.modOptional = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabArma = new System.Windows.Forms.TabPage();
             this.txtArmaPassword = new System.Windows.Forms.TextBox();
             this.lblArmaPassword = new System.Windows.Forms.Label();
@@ -67,6 +63,8 @@
             this.errName = new System.Windows.Forms.ErrorProvider(this.components);
             this.prgCreate = new System.Windows.Forms.ProgressBar();
             this.bgwCreate = new System.ComponentModel.BackgroundWorker();
+            this.modName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tabMods.SuspendLayout();
@@ -184,8 +182,8 @@
             this.dgvMods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.modName,
-            this.modIncluded,
-            this.modOptional});
+            this.modStatus});
+            this.dgvMods.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvMods.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgvMods.Location = new System.Drawing.Point(6, 33);
             this.dgvMods.Name = "dgvMods";
@@ -194,41 +192,6 @@
             this.dgvMods.TabIndex = 10;
             this.dgvMods.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMods_CellValueChanged);
             this.dgvMods.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvMods_CurrentCellDirtyStateChanged);
-            this.dgvMods.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvMods_RowsAdded);
-            // 
-            // modName
-            // 
-            this.modName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.modName.DataPropertyName = "name";
-            this.modName.HeaderText = "Name";
-            this.modName.Name = "modName";
-            this.modName.ReadOnly = true;
-            this.modName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.modName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // modIncluded
-            // 
-            this.modIncluded.DataPropertyName = "include";
-            this.modIncluded.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.modIncluded.HeaderText = "Include";
-            this.modIncluded.Name = "modIncluded";
-            this.modIncluded.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.modIncluded.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.modIncluded.Width = 58;
-            // 
-            // modOptional
-            // 
-            this.modOptional.DataPropertyName = "optional";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.NullValue = false;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlLight;
-            this.modOptional.DefaultCellStyle = dataGridViewCellStyle6;
-            this.modOptional.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.modOptional.HeaderText = "Optional";
-            this.modOptional.Name = "modOptional";
-            this.modOptional.ReadOnly = true;
-            this.modOptional.Width = 58;
             // 
             // tabArma
             // 
@@ -493,6 +456,31 @@
             this.bgwCreate.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgwCreate_ProgressChanged);
             this.bgwCreate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCreate_RunWorkerCompleted);
             // 
+            // modName
+            // 
+            this.modName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.modName.DataPropertyName = "name";
+            this.modName.HeaderText = "Name";
+            this.modName.Name = "modName";
+            this.modName.ReadOnly = true;
+            this.modName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // modStatus
+            // 
+            this.modStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.modStatus.DataPropertyName = "status";
+            this.modStatus.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.modStatus.FillWeight = 50F;
+            this.modStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.modStatus.HeaderText = "Status";
+            this.modStatus.Items.AddRange(new object[] {
+            "",
+            "Optional",
+            "Required"});
+            this.modStatus.Name = "modStatus";
+            this.modStatus.Sorted = true;
+            this.modStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // CreateRepoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -559,10 +547,9 @@
         private System.Windows.Forms.TextBox txtArmaPassword;
         private System.Windows.Forms.Label lblArmaPassword;
         private System.Windows.Forms.ErrorProvider errName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn modIncluded;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn modOptional;
         private System.Windows.Forms.ProgressBar prgCreate;
         private System.ComponentModel.BackgroundWorker bgwCreate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modName;
+        private System.Windows.Forms.DataGridViewComboBoxColumn modStatus;
     }
 }
