@@ -14,12 +14,13 @@ namespace RepoManager
 
         public ModFile() {}
         
-        public ModFile(string path, string checksum = null)
+        public ModFile(string path, string checksum = "")
         {
             Path = path.Substring(path.IndexOf("\\") + 1).Replace("\\", "/");
+            Checksum = checksum;
             Size = new FileInfo(path).Length;
 
-            if (checksum == null)
+            if (checksum == "")
             {
                 using (MD5 md5 = MD5.Create())
                 {
