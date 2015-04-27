@@ -195,7 +195,8 @@ namespace RepoManager
             if (dgvMods.Columns[e.ColumnIndex].Name == "modIncluded")
                 this.updateCheckboxState(e.RowIndex);
 
-            txtModsSearch.Select();
+            txtModsSearch.SelectAll();
+            txtModsSearch.Focus();
         }
 
         private void dgvMods_CurrentCellDirtyStateChanged(object sender, EventArgs e)
