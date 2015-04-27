@@ -117,13 +117,15 @@ namespace RepoManager
             repo.TeamspeakServer.ChannelId = txtTeamspeakChannelId.Text;
             repo.TeamspeakServer.ChannelPassword = txtTeamspeakChannelPassword.Text;
 
-            foreach (DataGridViewRow modRow in dgvMods.Rows)
+            DataRowCollection modRows = ((DataTable)((BindingSource)dgvMods.DataSource).DataSource).Rows;
+            foreach (DataRow modRow in modRows)
             {
-                if (!(bool)modRow.Cells["modIncluded"].Value) continue;
+                bool modIncluded = (bool)modRow.ItemArray[1];
+                if (!modIncluded) continue;
 
                 Mod mod = new Mod();
-                mod.Name = (string)modRow.Cells["modName"].Value;
-                mod.Optional = (bool)modRow.Cells["modOptional"].Value;
+                mod.Name = (string)modRow.ItemArray[0];
+                mod.Optional = (bool)modRow.ItemArray[2];
 
                 string[] filePaths = Directory.GetFiles(mod.Name, "*.*", SearchOption.AllDirectories);
                 foreach (string filePath in filePaths)
@@ -143,9 +145,9 @@ namespace RepoManager
                     }
                     mod.Files.Add(modFile);
 
-                    float modProgress = 100.0f * repo.Mods.Count / dgvMods.RowCount;
+                    float modProgress = 100.0f * repo.Mods.Count / modRows.Count;
                     float fileProgress = 100.0f * mod.Files.Count / filePaths.Length;
-                    float progress = modProgress + 1.0f / dgvMods.RowCount * fileProgress;
+                    float progress = modProgress + 1.0f / modRows.Count * fileProgress;
                     bgwCreate.ReportProgress((int)progress);
                 }
 
