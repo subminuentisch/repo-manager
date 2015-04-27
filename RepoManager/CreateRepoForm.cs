@@ -134,14 +134,11 @@ namespace RepoManager
                     ModFile modFile;
                     if (lastModified == cachedFileInfo.LastModified)
                     {
-                        modFile = new ModFile();
-                        modFile.Path = filePath;
-                        modFile.Checksum = cachedFileInfo.Checksum;
-                        modFile.Size = new FileInfo(filePath).Length;
+                        modFile = new ModFile(filePath, cachedFileInfo.Checksum);
                     }
                     else
                     {
-                        modFile = new ModFile(filePath); // Calculates checksum -> expensive
+                        modFile = new ModFile(filePath);
                         FileCache.Files[filePath] = new ModFileInfo(modFile.Checksum, lastModified);
                     }
                     mod.Files.Add(modFile);

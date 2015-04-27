@@ -14,17 +14,21 @@ namespace RepoManager
 
         public ModFile() {}
         
-        public ModFile(string path)
+        public ModFile(string path, string checksum = null)
         {
-            this.Path = path.Substring(path.IndexOf("\\") + 1); ;
+            Path = path.Substring(path.IndexOf("\\") + 1).Replace("\\", "/");
+            Size = new FileInfo(path).Length;
 
-            using (MD5 md5 = MD5.Create())
+            if (checksum == null)
             {
-                using (FileStream stream = File.OpenRead(path))
+                using (MD5 md5 = MD5.Create())
                 {
-                    byte[] hashRaw = md5.ComputeHash(stream);
-                    Checksum = BitConverter.ToString(hashRaw).Replace("-", "").ToLower();
-                    Size = stream.Length;
+                    using (FileStream stream = File.OpenRead(path))
+                    {
+                        byte[] hashRaw = md5.ComputeHash(stream);
+                        Checksum = BitConverter.ToString(hashRaw).Replace("-", "").ToLower();
+                        Size = stream.Length;
+                    }
                 }
             }
         }
